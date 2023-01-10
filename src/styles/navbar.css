@@ -1,0 +1,77 @@
+.nav, .logo-wrapper, .text-wrapper, .text-wrapper ul{
+    display: flex;
+}
+
+.nav{
+    width: 1220px;
+    height: 80px;
+    margin: 0 auto;
+    justify-content: space-between;
+    padding-top: 2rem;
+}
+
+.logo-wrapper{
+    align-items: center;
+}
+
+.logo-wrapper p{
+    margin-left: 43px;
+}
+
+.text-wrapper{
+    align-items: center;
+}
+
+.btn-special{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 232px;
+    height: 60px;
+    border-top-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    color: #572C53;
+    border: none;
+    overflow: hidden;
+    transition: all 0.2s ease 0s;
+    background: linear-gradient(86.43deg, #FFC700 0%, #F8D856 0%, #40DDFF 53.13%, #7C7FFF 99.61%);
+    filter: drop-shadow(rgba(255, 215, 77, 0.6) -1px -1px 2px) drop-shadow(rgba(124, 127, 255, 0.6) 1px 1px 2px);
+}
+
+.btn-special:hover{
+    cursor: pointer;
+    transform: rotate(2deg);
+}
+
+.btn-special svg{
+    position: absolute;
+    left: -8px;
+    height: 60px;
+    transition: all 0.4s cubic-bezier(0.5, -0.5, 0.5, 1.5) 0s;
+}
+
+.btn-special:hover svg{
+    left: 10px;
+    transform: translateX(50px) scale(2);
+}
+
+.text-wrapper ul li{
+    width: 106px;
+    list-style: none;
+    margin-right: 19px;
+}
+
+.text-wrapper ul li a{
+    color: white;
+    text-decoration: none;
+}
+
+.text-wrapper ul li a:hover{
+    color: #FFC700;
+    cursor: pointer;
+}
+
+p, li, button{
+    font-weight: 600;
+    font-size: 16px;
+}
