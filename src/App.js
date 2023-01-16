@@ -9,7 +9,6 @@ import './styles/App.css';
 function App() {
   return (
     <div className='app'>
-      <Navbar/>
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/about-us' element={<AboutUs/>}/>

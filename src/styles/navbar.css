@@ -7,7 +7,8 @@
     height: 80px;
     margin: 0 auto;
     justify-content: space-between;
-    padding-top: 2rem;
+    padding-top: 3rem;
+    margin-bottom: 4rem;
 }
 
 .logo-wrapper{
@@ -56,9 +57,8 @@
 }
 
 .text-wrapper ul li{
-    width: 106px;
     list-style: none;
-    margin-right: 19px;
+    margin-right: 1.5rem;
 }
 
 .text-wrapper ul li a{
