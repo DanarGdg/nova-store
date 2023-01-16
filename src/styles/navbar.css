@@ -44,14 +44,14 @@
     transform: rotate(2deg);
 }
 
-.btn-special svg{
+.btn-special img{
     position: absolute;
     left: -8px;
     height: 60px;
     transition: all 0.4s cubic-bezier(0.5, -0.5, 0.5, 1.5) 0s;
 }
 
-.btn-special:hover svg{
+.btn-special:hover img{
     left: 10px;
     transform: translateX(50px) scale(2);
 }
