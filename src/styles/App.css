@@ -120,3 +120,15 @@
 }
 
 /* END FOOTER */
+
+/* START TITLE */
+.title{
+  display: flex;
+  color: #E5E1E6;
+}
+
+.title p{
+  font-weight: normal;
+  margin-left: .5rem;
+}
+/* END TITLE */
