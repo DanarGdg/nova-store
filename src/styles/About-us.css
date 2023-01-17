@@ -1,19 +1,8 @@
 .about-us{
     width: 1220px;
+    height: 950px;
     margin: 0 auto;
     position: relative;
-}
-
-.about-us::before{
-    content: " ";
-    background-image: url("../assets/background-grid.svg");
-    background-repeat: no-repeat;
-    background-position: center;
-    width: 100%;
-    height: 1000px;
-    position: absolute;
-    z-index: -1;
-    opacity: 0.6;
 }
 
 .container-txt{
