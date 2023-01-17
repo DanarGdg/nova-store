@@ -6,6 +6,7 @@ import { SliderData } from '../data/sliderData.js';
 import contactLogo from '../assets/Contact.svg' 
 import Search from '../components/Search';
 import GridGames from '../components/GridGames';
+import Footer from '../components/Footer';
 
 function Home() {
   return (
@@ -22,6 +23,7 @@ function Home() {
       </div>
 
       <GridGames/>
+      <Footer/>
     </div>
   )
 }
