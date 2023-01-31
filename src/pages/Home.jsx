@@ -13,7 +13,7 @@ function Home() {
       <Navbar/>
       <ImageSlider slides={SliderData}/>
       <div className='wrapper-below-carousel'>
-        <p>Thank you for visiting our store, just reminder for always read the <br/> rules with correct :)</p>
+        <p>Thank you for visiting our store, just reminder for always read the <br/> rules with correct :&#41;</p>
         <img src={contactLogo} alt="" />
       </div>
       <div className='wrapper-search'>

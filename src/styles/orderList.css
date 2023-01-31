@@ -1,0 +1,46 @@
+.order-list{
+    width: 1220px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.order-list .search input{
+    width: calc(610px - 102px);
+}
+
+.table-order-list{
+    width: 100%;
+    border-collapse: collapse;
+    position: relative;
+}
+
+.table-order-list th{
+    background-color: #7C7FFF;
+    padding: 1rem 2rem;
+    text-align: left;
+}
+
+.table-order-list td{
+    background-color: #E4E0E5;
+    color: #000;
+    padding: 2rem 2rem;
+}
+
+.table-order-list tr{
+    position: relative;
+}
+
+.table-order-list tr:has(td)::after{
+    content: "";
+    position: absolute;
+    transform: translateX(-50%);
+    left: 50%;
+    bottom: 0;
+    height: 1px;
+    width: 95%;
+    border-bottom: 1px solid #000;
+}
+
+.table-order-list tr:last-child::after{
+    border-bottom: none;
+}
