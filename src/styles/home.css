@@ -39,7 +39,9 @@
 .grid-games{
     display: flex;
     flex-wrap: wrap;
-    gap: 2.5rem .5rem;
+    gap: 2.5rem 20px;
+    width: 1240px;
+    margin-top: 115px;
 }
 
 .grid-items img{
