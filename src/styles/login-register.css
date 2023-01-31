@@ -1,0 +1,57 @@
+.login-register{
+    width: 1220px;
+    height: 900px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.login-register .footer{
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
+.wrapper-box{
+    display: flex;
+    gap: 0 4.5rem;
+    width: 680px;
+    margin: 0 auto;
+    margin-top: 10rem;
+}
+
+.wrapper-box .box{
+    display: grid;
+    place-items: center;
+    width: 304px;
+    height: 274px;
+    border-radius: 24px;
+    padding: 2rem 0;
+    transition: all 0.4s cubic-bezier(0.8, -1, 0.2, 1.5) 0s;
+    cursor: pointer;
+}
+
+.wrapper-box .purple{
+    background: linear-gradient(180deg, rgba(124, 127, 255, 0) 19.27%, #7C7FFF 100%);
+    border: 1px solid #7C7FFF;
+}
+
+.wrapper-box .purple:hover{
+    box-shadow: #7C7FFF 0px 0px 25px, #7C7FFF 0px 0px 8px 2px;
+    transform: translateY(-12px);
+}
+
+.wrapper-box .orange{
+    background: linear-gradient(180deg, rgba(255, 199, 0, 0) 19.27%, #FFC700 100%);
+    border: 1px solid #FFC700;
+}
+
+.wrapper-box .orange:hover{
+    box-shadow: #FFC700 0px 0px 25px, #FFC700 0px 0px 8px 2px;
+    transform: translateY(-12px);
+}
+
+.wrapper-box .box p{
+    font-weight: 400;
+    font-size: 20px;
+    color: #E4E0E5;
+}

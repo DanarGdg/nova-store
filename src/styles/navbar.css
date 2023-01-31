@@ -56,6 +56,11 @@
     transform: translateX(50px) scale(2);
 }
 
+.text-wrapper a{
+    color: white;
+    text-decoration: none;
+}
+
 .text-wrapper ul li{
     list-style: none;
     margin-right: 1.5rem;
