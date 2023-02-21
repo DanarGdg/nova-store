@@ -1,18 +1,15 @@
 import React from 'react'
 import GridGamesItems from './GridGamesItems'
 
-function GridGames() {
+function GridGames({ data }) {
   return (
     <div className='grid-games'>
-        <GridGamesItems gameName="PUBG"/>
-        <GridGamesItems gameName="Mobile Legend"/>
-        <GridGamesItems gameName="Genshin Impact"/>
-        <GridGamesItems gameName="Honkai Impact"/>
-        <GridGamesItems gameName="Dragon Raja"/>
-        <GridGamesItems gameName="League of Legends"/>
-        <GridGamesItems gameName="Apex Legend"/>
-        <GridGamesItems gameName="Ragnarok"/>
-    </div>
+      {
+        data.map((game) => (
+          <GridGamesItems gameName={game.nama} gameThumbnail={game.pf_thumbnail} />
+        ))
+      }
+    </div >
   )
 }
 
