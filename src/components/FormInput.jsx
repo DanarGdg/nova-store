@@ -2,11 +2,14 @@ import React from 'react'
 
 import '../styles/form.css'
 
-function CustomForm(props) {
+function CustomForm({title, value, func, type}) {
+  function handleChange(e) {
+    func(e.target.value)
+  }
   return (
     <div>
-        <p>{props.title}</p>
-        <input action="" type="text"></input>
+        <p>{title}</p>
+        <input type={type} value={value} onChange={handleChange}></input>
     </div>
   )
 }
