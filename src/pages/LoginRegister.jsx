@@ -5,6 +5,7 @@ import mail from '../assets/mail.svg'
 import google from '../assets/google.svg'
 import '../styles/login-register.css'
 import Footer from '../components/Footer'
+import { Link } from 'react-router-dom'
 
 function Box(props){
     return(
@@ -21,8 +22,12 @@ function LoginRegister() {
         <Navbar/>
         <Title message='Please login to save your transactions'/>
         <div className='wrapper-box'>
-            <Box img={mail} text='AUTHORIZE WITH EMAIL' className='purple box'/>
-            <Box img={google} text='AUTHORIZE WITH GOOGLE' className='orange box'/>
+            <Link to={`/login`}>
+                <Box img={mail} text='AUTHORIZE WITH EMAIL' className='purple box'/>
+            </Link>
+            <Link to={`/register`}>
+                <Box img={google} text='AUTHORIZE WITH GOOGLE' className='orange box'/>
+            </Link>
         </div>
         <Footer/>
     </div>
