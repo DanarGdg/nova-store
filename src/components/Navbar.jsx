@@ -20,10 +20,12 @@ function Navbar() {
                 <li> <Link to='/about-us'>ABOUT US</Link> </li>
             </ul>
 
-            <div className='btn-special'>
-                <p>DAFTAR/MASUK</p>
-                <img src={shade} alt="" />
-            </div>
+            <Link to={'/login-register'}>
+                <div className='btn-special'>
+                    <p>DAFTAR/MASUK</p>
+                    <img src={shade} alt="" />
+                </div>
+            </Link>
         </div>
     </nav>
   )
