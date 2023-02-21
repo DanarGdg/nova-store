@@ -31,12 +31,15 @@
     height: 60px;
     border-top-left-radius: 25px;
     border-bottom-right-radius: 25px;
-    color: #572C53;
     border: none;
     overflow: hidden;
     transition: all 0.2s ease 0s;
     background: linear-gradient(86.43deg, #FFC700 0%, #F8D856 0%, #40DDFF 53.13%, #7C7FFF 99.61%);
     filter: drop-shadow(rgba(255, 215, 77, 0.6) -1px -1px 2px) drop-shadow(rgba(124, 127, 255, 0.6) 1px 1px 2px);
+}
+
+.btn-special p{
+    color: #572C53;
 }
 
 .btn-special:hover{

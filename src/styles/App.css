@@ -1,4 +1,4 @@
-.home::before, .about-us::before, .login-register::before, .price-list::before{
+.home::before, .about-us::before, .login-register::before, .price-list::before, .order-list::before{
   content: " ";
   background-image: url("../assets/background-grid.svg");
   background-repeat: no-repeat;
@@ -80,10 +80,11 @@
   align-items: center;
 }
 
-.search input {
+.search .input {
   /* width: 400px; */
   height: 50px;
   outline: none;
+  border-radius: 0;
   border-top-left-radius: 5px;
   border-end-start-radius: 5px;
   background-color: #D9D9D9;
@@ -95,7 +96,7 @@
   letter-spacing: 0.1em;
 }
 
-.search input::placeholder {
+.search .input::placeholder {
   color: #000;
 }
 

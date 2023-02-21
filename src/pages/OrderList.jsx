@@ -1,4 +1,5 @@
 import React from 'react'
+import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
 import Search from '../components/Search'
 import TableOrderList from '../components/TableOrderList'
@@ -8,10 +9,11 @@ function OrderList() {
   return (
     <div className='order-list'>
       <Navbar/>
-      <p>&gt;&gt;&gt; Cek Transaksi</p>
+      <p className='text'>&gt;&gt;&gt; Cek Transaksi</p>
       <Search placeholder='ID Transaction Example: WOGWOGWOG' className='search'/>
-      <p>&gt;&gt;&gt; Riwayat Transaksi</p>
+      <p className='text'>&gt;&gt;&gt; Riwayat Transaksi</p>
       <TableOrderList/>
+      <Footer/>
     </div>
   )
 }
