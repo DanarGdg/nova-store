@@ -25,7 +25,8 @@ function Login() {
                 'Content-Type': 'multipart/form-data'
             }
         }).then((response) => {
-            localStorage.setItem('token', response.data.token);
+            localStorage.setItem('token', response.data.
+            token);
             console.log(response)
             navigate('/')
         }).catch((error) => {

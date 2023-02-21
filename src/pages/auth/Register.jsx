@@ -13,7 +13,6 @@ function Register() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [noHp, setnoHp] = useState('')
-    const token = localStorage.getItem("token");
 
     const formData = new FormData();
     formData.append('name', nama);
