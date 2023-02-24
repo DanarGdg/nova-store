@@ -8,12 +8,20 @@ import PriceList from './pages/PriceList';
 import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
 import './styles/App.css';
+import { ApiHomeProvider } from './context/api/homeApi';
+import DetailGame from './components/DetailGame';
 
 function App() {
   return (
     <div className='app'>
       <Routes>
-        <Route path='/' element={<Home />} />
+        <Route path='/' 
+          element={
+          <ApiHomeProvider>
+            <Home />
+          </ApiHomeProvider>} 
+        />
+        <Route path='/detail-game/:id' element={<DetailGame/>}/>
         <Route path='/about-us' element={<AboutUs />} />
         <Route path='/order-list' element={<OrderList />} />
         <Route path='/price-list' element={<PriceList />} />

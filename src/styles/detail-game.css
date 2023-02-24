@@ -1,0 +1,80 @@
+.detail-game{
+    width: 1240px;
+    margin: 0 auto;
+    /* display: flex; */
+
+}
+
+.detail-game .line{
+    margin: 0 auto;
+    transform: translateY(-30px);
+    /* position: absolute; */
+}
+
+.wrapper-detail{
+    display: flex;
+}
+
+.wrapper-detail .text, .wrapper-detail .transaction{
+    width: 50%;
+}
+
+.wrapper-detail .text > img{
+    width: 500;
+    height: 250px;
+}
+
+.text .platform{
+    display: flex;
+    margin-top: 20px;
+}
+
+.text .platform img{
+    width: 170px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+.timeline-transaction{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    width: 50px;
+}
+
+.timeline-transaction .timeline-line{
+    height: 60px;
+    width: 2px;
+    background-color: #544E5A;
+    transition: all 0.5s ease-out;
+}
+
+.timeline-transaction .line-second{
+    height: 580px;
+    width: 2px;
+    background-color: #544E5A;
+}
+
+.timeline-number{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: #544E5A 2px solid;
+    display: grid;
+    place-items: center;
+    font-size: 24px;
+    font-weight: 600;
+    color: #544E5A;
+    transition: all 0.5s ease-out;
+}
+
+.active-timeline{
+    color: #7C7FFF;
+    border: #7C7FFF 2px solid;
+}
+
+.timeline-transaction .active-timeline-line{
+    background-color: #7C7FFF;
+}

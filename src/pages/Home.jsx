@@ -8,24 +8,11 @@ import Search from '../components/Search';
 import GridGames from '../components/GridGames';
 import Footer from '../components/Footer';
 import axios from 'axios';
+import { useApiHome } from '../context/api/homeApi';
 
 function Home() {
-
-  const [gameData, setGameData] = useState()
-  const [loading, setLoading] = useState(false)
-
-
-  useEffect(() => {
-    async function gameDataApi(e) {
-      setLoading(false)
-      axios.get('http://restapi.novastore.my.id/api/home')
-        .then((response) => {
-          setGameData(response.data.data)
-          setLoading(true)
-        });
-    }
-    gameDataApi()
-  }, [])
+  const context = useApiHome()
+  // console.log(context)
 
   return (
     <div className='home'>
@@ -36,11 +23,10 @@ function Home() {
         <img src={contactLogo} alt="" />
       </div>
       <div className='wrapper-search'>
-        <Search placeholder="Search Your Game Here" />
+        <Search placeholder="Search Your Game Here" value={context.search} func={context.setSearch} searchFunc={context.searchApi}/>
         <h1>TOP UP GAME</h1>
       </div>
-      {loading ? <GridGames data={gameData} /> : <h1>Loading</h1>}
-
+      {context.loading ? <GridGames data={context.gameData} /> : <h1>Loading</h1>}
       <Footer />
     </div>
   )
