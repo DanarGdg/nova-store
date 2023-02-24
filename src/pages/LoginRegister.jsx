@@ -20,13 +20,11 @@ function Box(props){
 function LoginRegister() {
     const navigate = useNavigate()
 
-    async function loginGoogle(){
+    function loginGoogle(){
         console.log('click');
-        axios.get('http://restapi.novastore.my.id/auth/google', {
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-            }
-        }).then((response) => {
+        axios.get('http://restapi.novastore.my.id/auth/google')
+        
+            .then((response) => {
             localStorage.setItem('token', response.data.token);
             console.log(response)
             navigate('/')
@@ -42,7 +40,10 @@ function LoginRegister() {
             <Link to={`/login`}>
                 <Box img={mail} text='AUTHORIZE WITH EMAIL' className='purple box'/>
             </Link>
-            <Box img={google} text='AUTHORIZE WITH GOOGLE' className='orange box' onClick={loginGoogle}/>
+            <div  onClick={loginGoogle}>
+
+            <Box img={google} text='AUTHORIZE WITH GOOGLE' className='orange box'/>
+            </div>
         </div>
         <Footer/>
     </div>
