@@ -7,7 +7,7 @@ function CustomForm({title, value, func, type}) {
     func(e.target.value)
   }
   return (
-    <div>
+    <div className='form'>
         <p>{title}</p>
         <input type={type} value={value} onChange={handleChange}></input>
     </div>

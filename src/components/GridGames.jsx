@@ -5,6 +5,7 @@ import GridGamesItems from './GridGamesItems'
 
 function GridGames({ data }) {
   const context = useApiHome()
+  console.log(data);
   return (
     <div className='grid-games'>
       {

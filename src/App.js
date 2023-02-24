@@ -10,6 +10,7 @@ import Register from './pages/auth/Register';
 import './styles/App.css';
 import { ApiHomeProvider } from './context/api/homeApi';
 import DetailGame from './components/DetailGame';
+import { DetailGameProvider } from './context/app/ContextDetailGame';
 
 function App() {
   return (
@@ -21,7 +22,13 @@ function App() {
             <Home />
           </ApiHomeProvider>} 
         />
-        <Route path='/detail-game/:id' element={<DetailGame/>}/>
+        <Route path='/detail-game/:id' 
+          element={
+            <DetailGameProvider>
+              <DetailGame/>
+            </DetailGameProvider>
+          }
+        />
         <Route path='/about-us' element={<AboutUs />} />
         <Route path='/order-list' element={<OrderList />} />
         <Route path='/price-list' element={<PriceList />} />

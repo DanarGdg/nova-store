@@ -36,6 +36,8 @@
     background-color: transparent;
     color: white;
     cursor: pointer;
+    font-weight: 700;
+    font-family: 'Roboto Mono', monospace;
 }
 
 .regist-text{

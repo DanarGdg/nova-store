@@ -79,7 +79,7 @@
     cursor: pointer;
 }
 
-p, li, button{
+.nav p, .nav li, .nav button{
     font-weight: 600;
     font-size: 16px;
 }

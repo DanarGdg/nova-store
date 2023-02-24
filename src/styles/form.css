@@ -1,10 +1,10 @@
-p {
+.form p {
     color: aliceblue;
     margin-bottom: 8px;
     font-size: 16sp;
 }
 
-input{
+form input{
     border-radius: 8px;
     padding: 5px;
     width: 100%;

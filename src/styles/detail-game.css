@@ -35,6 +35,10 @@
     margin-right: 10px;
 }
 
+.transaction{
+    display: flex;
+}
+
 .timeline-transaction{
     display: flex;
     flex-direction: column;
@@ -77,4 +81,124 @@
 
 .timeline-transaction .active-timeline-line{
     background-color: #7C7FFF;
+}
+
+.wrapper-input-items{
+    padding: .75rem 1.5rem 0
+}
+
+.wrapper-input{
+    display: flex;
+    flex-direction: column;
+}
+
+.wrapper-input h1, .wrapper-items h1{
+    font-weight: 700;
+    font-size: 20px;   
+    margin-bottom: 2rem; 
+}
+
+.wrapper-input div{
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.wrapper-input div input{
+    width: 300px;
+    height: 50px;
+    background-color: transparent;
+    border: 1px solid #544E5A;
+    outline: none;
+    color: white;
+    font-size: 24px;
+    transition: all .3s ;
+}
+
+.wrapper-input div input:focus, .wrapper-input div input:hover{
+    border: 1px solid #7C7FFF;
+}
+
+.wrapper-input img{
+    width: 24px;
+    height: 24px;
+}
+
+.wrapper-items{
+    margin-top: 2rem;
+}
+
+.wrapper-topup-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2rem;
+}
+
+.wrapper-items .item{
+    width: 163px;
+    height: 168px;
+    border: 1px solid #544E5A;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 7.5px;
+    transition: ease-out 0.3s;
+    cursor: pointer;
+}
+
+.wrapper-items .selected{
+    border: 1px solid #7C7FFF;
+}
+
+.wrapper-items .item:hover{
+    border: 1px solid #7C7FFF;
+}
+
+.wrapper-items .item:hover > p {
+    color: #7C7FFF;
+}
+
+.wrapper-items .item:hover > svg path{
+    fill: #7C7FFF;
+}
+
+.wrapper-items .item svg, .wrapper-items .item path{
+    fill: white;
+    transition: ease-out 0.3s;
+}
+
+.wrapper-items .item p{
+    margin-top: 1rem;
+    font-weight: 700;
+    font-size: 14px;
+    width: 80%;
+    transition: ease-out 0.3s;
+}
+
+.wrapper-total{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border: 1px solid #544E5A;
+    border-radius: 7.5px;
+    padding: 1rem;
+    margin-top: 2rem;
+}
+
+.wrapper-total div{
+    display: flex;
+    border-bottom: 1px solid #544E5A;
+    padding-bottom: 1rem;
+}
+
+.wrapper-total div h3{
+    margin-left: 1rem;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.wrapper-total p{
+    margin-top: .5rem;
 }
