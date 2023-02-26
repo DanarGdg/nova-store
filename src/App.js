@@ -13,6 +13,8 @@ import { DetailGameProvider } from './context/app/ContextDetailGame';
 import Profile from './pages/auth/Profile';
 import Login from './pages/auth/Login';
 import { ApiOrderListProvider } from './context/api/OrderListApi';
+import EditProfile from './pages/auth/EditProfile';
+import { ApiProfileProvider } from './context/api/ProfileApi';
 
 function App() {
   return (
@@ -43,7 +45,20 @@ function App() {
         <Route path='/login-register' element={<LoginRegister />} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
-        <Route path='/profile' element={<Profile />} />
+        <Route path='/profile' 
+          element={
+            <ApiProfileProvider>
+              <Profile />
+            </ApiProfileProvider>
+          } 
+        />
+        <Route path='/edit-profile' 
+          element={
+            <ApiProfileProvider>
+              <EditProfile />
+            </ApiProfileProvider>
+          } 
+        />
         <Route path='*' element={<h1>404 Not Found</h1>} />
       </Routes>
     </div>

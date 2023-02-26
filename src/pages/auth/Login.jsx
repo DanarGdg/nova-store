@@ -37,7 +37,7 @@ function Login() {
     return (
         <form onSubmit={login} class="login">
             <Navbar />
-            <p>Login to your account</p>
+            <p className="current-page">Login to your account</p>
             <div class="border-line"></div>
             <div class="container">
                 <CustomForm title="EMAIL" type='text' value={email} func={setEmail} />

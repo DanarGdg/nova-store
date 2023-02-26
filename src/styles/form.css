@@ -4,7 +4,7 @@
     font-size: 16sp;
 }
 
-form input{
+.form input{
     border-radius: 8px;
     padding: 5px;
     width: 100%;
