@@ -1,0 +1,65 @@
+.edit-profile{
+    width: 1220px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.edit-profile .container{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.wrapper-upload-photo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 5rem;
+}
+
+.wrapper-upload-photo .box{
+    margin-bottom: 0;
+    margin-top: 0px;
+}
+
+.upload-photo{
+    background-color: #E4E1E6;
+    color: black;
+    width: 280px;
+    font-weight: 500;
+    font-size: 16px;
+    text-align: center;    
+    padding: .5rem 2rem;
+    clip-path: polygon(12px 0px, 100% 0px, 100% 72%, calc(100% - 12px) 100%, 0px 100%, 0px 12px);
+}
+
+.upload-photo input[type="file"] {
+    display: none;
+}
+
+.wrapper-action{
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.wrapper-action .edit{
+    width: auto;
+    height: 40px;
+    padding: 1rem 3rem;
+    background-color: #7C7FFF;
+    font-size: 16px;
+    font-weight: 500;
+    color: white;
+}
+
+.wrapper-action .back{
+    width: auto;
+    height: 40px;
+    padding: 1rem 2.5rem;
+    background-color: #E4E1E6;
+    font-size: 16px;
+    font-weight: 500;
+}
