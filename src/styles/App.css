@@ -1,4 +1,9 @@
-.home::before, .about-us::before, .login-register::before, .price-list::before, .order-list::before{
+.home::before,
+.about-us::before,
+.login-register::before,
+.price-list::before,
+.order-list::before,
+.profile::before {
   content: " ";
   background-image: url("../assets/background-grid.svg");
   background-repeat: no-repeat;
@@ -114,7 +119,8 @@
 /* END SEARCH BAR */
 
 /* BACKGROUND GRID */
-.home::before, .order-list::before{
+.home::before,
+.order-list::before {
   content: " ";
   background-image: url("../assets/background-grid.svg");
   background-repeat: no-repeat;
@@ -125,6 +131,7 @@
   z-index: -1;
   opacity: 0.6;
 }
+
 /* END BACKGROUND GRID */
 /* FOOTER */
 
@@ -132,7 +139,7 @@
   margin-top: 120px;
 }
 
-.about-us .footer{
+.about-us .footer {
   width: 100%;
   position: absolute;
   bottom: 0;
@@ -154,15 +161,16 @@
 /* END FOOTER */
 
 /* START TITLE */
-.title{
+.title {
   display: flex;
   color: #E5E1E6;
 }
 
-.title p{
+.title p {
   font-weight: normal;
   margin-left: .5rem;
 }
+
 /* END TITLE */
 
 /* START DROPDOWN */
@@ -175,11 +183,11 @@
   padding: 5px 10px;
 }
 
-.dropdown-tool img{
+.dropdown-tool img {
   width: 12px;
   height: 12px;
   transform: rotate(-90deg);
-} 
+}
 
 .dropdown-input {
   padding: 5px;
@@ -249,3 +257,68 @@
 }
 
 /* END DROPDOWN */
+
+/* PAYMENT CONTAINER */
+
+.payment-container {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.payment-container img {
+  position: absolute;
+  z-index: -1;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.data {
+  margin-top: 35px;
+  display: grid;
+  grid-template-columns: 5fr 2fr 5fr;
+  grid-gap: 60px;
+}
+
+.column-box {
+  margin: 5px;
+}
+
+.column-box li {
+  list-style: none;
+}
+
+.header-title {
+  text-align: center;
+  margin-bottom: 100px;
+  font-size: 24px;
+}
+
+.list-data {
+  list-style: none;
+}
+
+.list-data li {
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+.list-divider {
+  list-style: none;
+}
+
+.list-divider li {
+  font-size: 12px;
+}
+
+.list-divider li p {
+  padding: 10px;
+  font-size: 18px;
+  opacity: 45%;
+  transform: rotate(90deg);
+}
+
+/* END PAYMENT CONTAINER */

@@ -1,0 +1,111 @@
+.profile {
+    width: 1220px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.profile.text {
+    color: #E5E1E6;
+    font-weight: 400;
+    font-size: 16px;
+    margin-bottom: 2rem;
+}
+
+.row-container {
+    margin-top: 35px;
+    display: grid;
+    grid-template-columns: 10fr 1fr 1fr;
+    grid-gap: 60px;
+}
+
+.btn {
+    color: #000;
+    font-weight: 900;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    width: 130px;
+    height: 40px;
+    background-color: white;
+    clip-path: polygon(12px 0px, 100% 0px, 100% 72%, calc(100% - 12px) 100%, 0px 100%, 0px 12px);
+}
+
+.img-user {
+    border-radius: 40px;
+    width: 250px;
+    height: 250px;
+    display: block;
+    margin-top: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    /* adjust the below to control the 3D effect */
+    --x: 10px;
+    --y: 20px;
+    transform: perspective(3000px) rotateX(var(--_a, 30deg));
+    /* */
+    clip-path: polygon(var(--y) var(--y),
+            calc(100% - var(--y)) var(--y),
+            calc(100% - var(--y)) calc(100% - var(--y)),
+            calc(100% - var(--y) - var(--x)) var(--_c, 100%),
+            calc(var(--x) + var(--y)) var(--_c, 100%),
+            var(--y) calc(100% - var(--y)));
+    outline: var(--y) solid rgba(19, 7, 21, 0.4);
+    outline-offset: calc(-1*var(--y));
+    padding: var(--y) var(--y) 0 var(--y);
+    transition: 1s;
+}
+
+.box:hover img {
+    --_a: 0deg;
+    --_c: calc(100% - var(--y));
+}
+
+.box {
+    margin-top: 100px;
+    margin-bottom: 100px;
+    cursor: pointer;
+}
+
+.pop-up-text {
+    text-align: center;
+    margin: 0;
+    font-weight: bold;
+    font-family: 'Roboto Mono', monospace;
+    transform: translateY(550%);
+    transition: .8s;
+}
+
+.box:hover .pop-up-text {
+    transform: translateY(0%);
+    transition: .8s .2s;
+}
+
+.history-header {
+    margin-bottom: 65px;
+}
+
+.history-tittle {
+    font-size: 64px;
+}
+
+.divider {
+    width: 100%;
+    height: 1px;
+    background-color: #D9D9D9;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.txt-under-header {
+    margin-top: 65px;
+}
+
+.payment {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -11,21 +11,22 @@ import './styles/App.css';
 import { ApiHomeProvider } from './context/api/homeApi';
 import DetailGame from './components/DetailGame';
 import { DetailGameProvider } from './context/app/ContextDetailGame';
+import Profile from './pages/auth/Profile';
 
 function App() {
   return (
     <div className='app'>
       <Routes>
-        <Route path='/' 
+        <Route path='/'
           element={
-          <ApiHomeProvider>
-            <Home />
-          </ApiHomeProvider>} 
+            <ApiHomeProvider>
+              <Home />
+            </ApiHomeProvider>}
         />
-        <Route path='/detail-game/:id' 
+        <Route path='/detail-game/:id'
           element={
             <DetailGameProvider>
-              <DetailGame/>
+              <DetailGame />
             </DetailGameProvider>
           }
         />
@@ -35,6 +36,7 @@ function App() {
         <Route path='login-register' element={<LoginRegister />} />
         <Route path='login' element={<Login />} />
         <Route path='register' element={<Register />} />
+        <Route path='profile' element={<Profile />} />
         <Route path='*' element={<h1>404 Not Found</h1>} />
       </Routes>
     </div>
