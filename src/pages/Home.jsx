@@ -23,7 +23,13 @@ function Home() {
         <img src={contactLogo} alt="" />
       </div>
       <div className='wrapper-search'>
-        <Search placeholder="Search Your Game Here" value={context.search} func={context.setSearch} searchFunc={context.searchApi}/>
+        <Search placeholder="Search Your Game Here" 
+          value={context.search} 
+          func={context.setSearch} 
+          searchFunc={context.searchApi}
+          loadingfunc={context.setLoading}
+          setData={context.setGameData}
+        />
         <h1>TOP UP GAME</h1>
       </div>
       {context.loading ? <GridGames data={context.gameData} /> : <h1>Loading</h1>}

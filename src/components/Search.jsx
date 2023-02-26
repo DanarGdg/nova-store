@@ -2,9 +2,7 @@ import React from 'react'
 import search from '../assets/search.svg'
 import { useApiHome } from '../context/api/homeApi'
 
-function Search({ func, searchFunc, placeholder, value }) {
-
-  const context = useApiHome()
+function Search({ func, searchFunc, placeholder, value, loadingfunc, setData }) {
 
   function handleChange(e){
     func(e.target.value)
@@ -12,8 +10,9 @@ function Search({ func, searchFunc, placeholder, value }) {
 
   async function handleSearch(){
     searchFunc().then((response) => {
-      context.setLoading(true)
-      context.setGameData(response.data.data)
+      loadingfunc(true)
+      setData(response.data.data)
+      console.log(response);
     }).catch((error) => {
       console.log(error)
     })

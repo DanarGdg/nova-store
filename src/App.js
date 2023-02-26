@@ -12,6 +12,7 @@ import DetailGame from './components/DetailGame';
 import { DetailGameProvider } from './context/app/ContextDetailGame';
 import Profile from './pages/auth/Profile';
 import Login from './pages/auth/Login';
+import { ApiOrderListProvider } from './context/api/OrderListApi';
 
 function App() {
   return (
@@ -31,7 +32,13 @@ function App() {
           }
         />
         <Route path='/about-us' element={<AboutUs />} />
-        <Route path='/order-list' element={<OrderList />} />
+        <Route path='/order-list' 
+          element={
+            <ApiOrderListProvider>
+              <OrderList />
+            </ApiOrderListProvider>
+          } 
+        />
         <Route path='/price-list' element={<PriceList />} />
         <Route path='/login-register' element={<LoginRegister />} />
         <Route path='/login' element={<Login />} />
