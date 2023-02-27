@@ -4,7 +4,6 @@ import { useApiOrderList } from '../context/api/OrderListApi';
 
 function TableOrderList() {
     const context = useApiOrderList()
-    console.log(context.orderList)
 
     return (
         <table className='table-order-list'>
@@ -18,20 +17,23 @@ function TableOrderList() {
                     <th>Status</th>
                 </tr>
 
-                {
-                    context.orderList.map((item, index) => (
-                        <tr key={index}>
-                            <td>{item?.id}</td>
-                            <td>{item?.game.nama}</td>
-                            <td>{item?.item.item}</td>
-                            <td>Rp {item?.harga}</td>
-                            <td>{item?.created_at}</td>
-                            <td><div className={`status ${item?.status === 'Pending' ? 'status_pending' : ''}`}>{item?.status}</div></td>
-                        </tr>
-                    ))
+                {!context.loading ?
+
+                'loadingg' 
+                : context.orderList.length === 0 ? 'data tidak ditemukan'
+                : context.orderList.map((item, index) => (
+                    <tr key={index}>
+                        <td>{item?.id}</td>
+                        <td>{item.game?.nama}</td>
+                        <td>{item.item?.item}</td>
+                        <td>Rp {item?.harga}</td>
+                        <td>{item?.created_at}</td>
+                        <td><div className={`status ${item?.status === 'Pending' ? 'status_pending' : ''}`}>{item?.status}</div></td>
+                    </tr>
+                ))
                 }
 
-                <tr>
+                {/* <tr>
                     <td>AAXXA</td>
                     <td>Mobile Legends</td>
                     <td>10 Diamonds</td>
@@ -86,7 +88,7 @@ function TableOrderList() {
                     <td>Rp 10000</td>
                     <td>2022-09-10 17:03:58</td>
                     <td><div className='status status_success'>SUCCESS</div></td>
-                </tr>
+                </tr> */}
             </tbody>
         </table>
     )

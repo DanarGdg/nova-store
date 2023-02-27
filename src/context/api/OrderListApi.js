@@ -10,27 +10,34 @@ function useApiOrderList() {
 function ApiOrderListProvider({ children }) {
     const [search, setSearch] = useState('')
     const [orderList, setOrderList] = useState([])
+    const [searchOrderList, setSearchOrderList] = useState([])
     const [loading, setLoading] = useState(false)
     const token = localStorage.getItem('token');
 
     function getOrderList() {
+        setLoading(false)
         axios.get('http://restapi.novastore.my.id/api/order', {
             headers: {
                 Authorization: `Bearer ${token}`,
-            },            
+        },            
         }).then((response) => {
             setOrderList(response.data.data)
+            setLoading(true)
         }).catch((error) => {
             console.log(error)
         });
     }
 
-    function searchOrderList() {
+    function handleSearch() {
+        const request = {
+            search: search
+        }
+        setLoading(false)
         return axios.get('http://restapi.novastore.my.id/api/order/search', {
             headers: {
                 Authorization: `Bearer ${token}`,
             },            
-            search: search
+            params: request
         })
     }
 
@@ -41,7 +48,7 @@ function ApiOrderListProvider({ children }) {
     const contextValue = {
         orderList, setOrderList,
         search, setSearch,
-        searchOrderList,
+        handleSearch,
         loading, setLoading
     }
 

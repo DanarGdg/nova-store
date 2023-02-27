@@ -12,7 +12,6 @@ function Search({ func, searchFunc, placeholder, value, loadingfunc, setData }) 
     searchFunc().then((response) => {
       loadingfunc(true)
       setData(response.data.data)
-      console.log(response);
     }).catch((error) => {
       console.log(error)
     })

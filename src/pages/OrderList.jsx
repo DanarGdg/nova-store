@@ -17,7 +17,7 @@ function OrderList() {
       <p className='text'>&gt;&gt;&gt; Cek Transaksi</p>
       <Search placeholder='ID Transaction Example: WOGWOGWOG' className='search'
         func={context.setSearch}
-        searchFunc={context.searchOrderList}
+        searchFunc={context.handleSearch}
         value={context.search}
         loadingfunc={context.setLoading}
         setData={context.setOrderList}
