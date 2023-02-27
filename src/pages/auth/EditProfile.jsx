@@ -1,33 +1,20 @@
 import React from 'react'
-import { useState } from 'react'
 import CustomForm from '../../components/FormInput'
 import Navbar from '../../components/Navbar'
 import '../../styles/edit-profile.css'
-import logo from '../../assets/asa.png'
 import Footer from '../../components/Footer'
-import axios from 'axios'
-import { useNavigate } from 'react-router'
-import { useEffect } from 'react'
 import { useProfileApi } from '../../context/api/ProfileApi'
 import { Link } from 'react-router-dom'
 
 function EditProfile() {
     const context = useProfileApi()
-    // console.log(context.name)
-
     const handleFileAvatar = function (e) {
         context.setAvatar(e.target.files[0])
     };
-    
-    useEffect(() => {
-        // console.log(context.formData.append('avatar', context.avatar));
-        // console.log(context.avatar);
-    },[context.avatar])
 
     return (
         <form className='edit-profile' onSubmit={context.handleEditProfile}>
             <Navbar/>
-            {/* {context.profileData.user?.pf_avatar} */}
             <div className=''>
                 <p className='current-page'>Edit Info</p>
                 <div class="border-line"></div>
