@@ -23,7 +23,7 @@ function ApiProfileProvider({ children }) {
         axios.get('http://restapi.novastore.my.id/api/profile', {
             headers: {
                 Authorization: `Bearer ${token}`,
-            },            
+            },
         }).then((response) => {
             setProfileData(response.data.data)
             setName(response.data.data.user.name)
@@ -40,14 +40,17 @@ function ApiProfileProvider({ children }) {
     });
 
     const formData = new FormData();
-    let appendAvatar = formData.append('avatar', avatar);
-    
+    console.log(avatar?.type);
     function handleEditProfile(e) {
-        formData.append('name', name);
-        console.log(appendAvatar)
-         // formData.append('avatar', avatar);
-        formData.append('no_hp', phoneNumber);
         e.preventDefault();
+        if (avatar?.type) {
+            formData.append('name', name);
+            formData.append('avatar', avatar);
+            formData.append('no_hp', phoneNumber);
+        } else {
+            formData.append('name', name);
+            formData.append('no_hp', phoneNumber);
+        }
         axios.post('http://restapi.novastore.my.id/api/profile/edit-profile', formData, {
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -74,7 +77,8 @@ function ApiProfileProvider({ children }) {
         phoneNumber, setPhoneNumber,
         avatar, setAvatar,
         loading, setLoading,
-        handleEditProfile, formData, appendAvatar
+        handleEditProfile, formData,
+        // appendAvatar
     }
 
     return (

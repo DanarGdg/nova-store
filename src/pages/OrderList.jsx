@@ -13,18 +13,18 @@ function OrderList() {
 
   return (
     <div className='order-list'>
-      <Navbar/>
+      <Navbar />
       <p className='text'>&gt;&gt;&gt; Cek Transaksi</p>
-      <Search placeholder='ID Transaction Example: WOGWOGWOG' className='search' 
+      <Search placeholder='ID Transaction Example: WOGWOGWOG' className='search'
         func={context.setSearch}
         searchFunc={context.searchOrderList}
-        value={context.search} 
+        value={context.search}
         loadingfunc={context.setLoading}
         setData={context.setOrderList}
       />
       <p className='text'>&gt;&gt;&gt; Riwayat Transaksi</p>
       <TableOrderList />
-      <Footer/>
+      <Footer />
     </div>
   )
 }
