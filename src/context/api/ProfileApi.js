@@ -35,12 +35,7 @@ function ApiProfileProvider({ children }) {
         });
     }
 
-    const file = new File(["avatar"], avatar, {
-        type: "image",
-    });
-
     const formData = new FormData();
-    console.log(avatar?.type);
     function handleEditProfile(e) {
         e.preventDefault();
         if (avatar?.type) {
@@ -77,8 +72,7 @@ function ApiProfileProvider({ children }) {
         phoneNumber, setPhoneNumber,
         avatar, setAvatar,
         loading, setLoading,
-        handleEditProfile, formData,
-        // appendAvatar
+        handleEditProfile,
     }
 
     return (

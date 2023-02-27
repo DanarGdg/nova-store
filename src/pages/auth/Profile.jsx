@@ -1,13 +1,11 @@
-import React, { useState } from "react"
+import React from "react"
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
 import Title from '../../components/Title'
 import '../../styles/profile.css'
-import logo from '../../assets/asa.png'
 import PaymentContainer from '../../components/PaymentContainer'
 import { useNavigate } from "react-router"
 import axios from "axios"
-import { useEffect } from "react"
 import { Link } from "react-router-dom"
 import { useProfileApi } from "../../context/api/ProfileApi"
 
@@ -31,35 +29,30 @@ function Profile() {
     }
 
     return (
-        <div class="profile">
+        <div className="profile">
             <div>
                 <Navbar />
             </div>
 
-            <div class="row-container">
+            <div className="row-container">
                 <Title message={`BOOT PROFILE: HELLO, ${context.profileData.user?.name}`} />
                 <Link to={'/edit-profile'}>
-                    <div class="btn">EDIT INFO</div>
+                    <div className="btn">EDIT INFO</div>
                 </Link>
-                <div class="btn" onClick={logout}>LOGOUT</div>
+                <div className="btn" onClick={logout}>LOGOUT</div>
             </div>
-            <div class="box">
-                <h2 class='pop-up-text'>{context.profileData.user?.name}</h2>
-                <img class="img-user" src={context.profileData.user?.pf_avatar} alt="" />
+            <div className="box">
+                <h2 className='pop-up-text'>{context.profileData.user?.name}</h2>
+                <img className="img-user" src={context.profileData.user?.pf_avatar} alt="" />
             </div>
-            <div class="history-header">
-                <h1 class="history-tittle">
+            <div className="history-header">
+                <h1 className="history-tittle">
                     HISTORY PAYMENT
                 </h1>
                 <div className="divider"></div>
             </div>
             <Title message={`Payment this month: ${context.profileData['history-payment']?.length} transaction`} />
-            <div class="payment">
-                <PaymentContainer />
-            </div>
-            <div class="payment">
-                <PaymentContainer />
-            </div>
+            <PaymentContainer />
             <Footer />
         </div>
     )

@@ -61,9 +61,10 @@
 }
 
 .box {
-    margin-top: 100px;
-    margin-bottom: 100px;
     cursor: pointer;
+    width: 250px;
+    height: 250px;
+    margin: 100px auto;
 }
 
 .pop-up-text {
@@ -88,6 +89,17 @@
     font-size: 64px;
 }
 
+.header-title{
+    font-size: 36px;
+    display: flex;
+    justify-content: center;
+}
+
+.header-title h1{
+    font-size: 36px;
+    color: #748BFF;
+}
+
 .divider {
     width: 100%;
     height: 1px;
@@ -108,4 +120,5 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    /* flex-direction: column; */
 }

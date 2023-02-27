@@ -1,68 +1,82 @@
+import dayjs from 'dayjs';
 import React from 'react'
-
-import PaymentBorder from '../assets/payment-border.png';
+import pendingPaymentBorder from '../assets/pending-payment-border.png';
+import successPaymentBorder from '../assets/success-payment-border.png';
+import { useProfileApi } from '../context/api/ProfileApi';
 
 function PaymentContainer() {
+    const context = useProfileApi()
     return (
-        <div class="payment-container">
-            <img src={PaymentBorder} alt="" />
-            <ul class="column-box">
-                <li>
-                    <div class="header-title">
-                        [GAME: Mobile Legend]
+        <>
+            {context.profileData['history-payment']?.map((data, index) => (
+                <div className='payment' key={index}>
+                    <div className="payment-container">
+                        <img src={
+                            data.status === 'Pending' ? pendingPaymentBorder 
+                            : data.status === 'Success' ? successPaymentBorder 
+                            : 'invalid'} 
+                        alt="" />
+                        <ul className="column-box">
+                            <li>
+                                <div className="header-title">
+                                    [GAME: <h1>&nbsp; {data.game.nama}</h1>]
+                                </div>
+                            </li>
+                            <li>
+                                <div className="data">
+                                    <div>
+                                        <ul className="list-data">
+                                            <li>
+                                                User id: {data?.user_id}
+                                            </li>
+                                            <li>
+                                                Id payment: {data?.id}
+                                            </li>
+                                            <li>
+                                                Nominal top-up: {data?.item.item}
+                                            </li>
+                                            <li>
+                                                Harga: Rp. {data?.harga.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div>
+                                        <ul className="list-divider">
+                                            <li>
+                                                <p>&gt;&gt;&gt;</p>
+                                            </li>
+                                            <li>
+                                                <p>&gt;&gt;&gt;</p>
+                                            </li>
+                                            <li>
+                                                <p>&gt;&gt;&gt;</p>
+                                            </li>
+                                            <li>
+                                                <p>&gt;&gt;&gt;</p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <ul className="list-data">
+                                            <li>
+                                                Date order: {dayjs(data?.created_at).format('DD-MM-YYYY')}
+                                            </li>
+                                            <li>
+                                                Date payment: {dayjs(data?.updated_at).format('DD-MM-YYYY')}
+                                            </li>
+                                            <li>
+                                                Status: {data?.status}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
-                </li>
-                <li>
-                    <div class="data">
-                        <div>
-                            <ul class="list-data">
-                                <li>
-                                    User id: 12230999823
-                                </li>
-                                <li>
-                                    Id payment: 09823
-                                </li>
-                                <li>
-                                    Nominal top-up: 1024 Diamond
-                                </li>
-                                <li>
-                                    Harga: Rp. 712,000
-                                </li>
-                            </ul>
-                        </div>
-                        <div>
-                            <ul class="list-divider">
-                                <li>
-                                    <p>&gt;&gt;&gt;</p>
-                                </li>
-                                <li>
-                                    <p>&gt;&gt;&gt;</p>
-                                </li>
-                                <li>
-                                    <p>&gt;&gt;&gt;</p>
-                                </li>
-                                <li>
-                                    <p>&gt;&gt;&gt;</p>
-                                </li>
-                            </ul>
-                        </div>
-                        <div>
-                            <ul class="list-data">
-                                <li>
-                                    Date order: 10-12-2022
-                                </li>
-                                <li>
-                                    Date payment: 10-12-2022
-                                </li>
-                                <li>
-                                    Status: Pendding
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
+                </div>
+            ))}
+        </>
     )
 }
 
