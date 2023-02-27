@@ -22,7 +22,7 @@ function DetailGame() {
     const [loading, setLoading] = useState(false);
     const context = useContextDetailGame()
     const token = localStorage.getItem("token");
-    console.log(items);
+    console.log(typeof detail.id);
 
     useEffect(() => {
         function getData() {
@@ -45,24 +45,35 @@ function DetailGame() {
         getData();
     }, [userId]);
 
-    function handleCreateTransaction(e){
+    function handleCreateTransaction(e) {
         e.preventDefault()
         const formData = new FormData();
-        formData.append('game_id', context.idUser);
-        formData.append('item_id', items);
+        formData.append('game_id', parseInt(detail.id));
+        formData.append('item_id', parseInt(context.selectedItem.id));
+        formData.append('id_user', parseInt(context.idUser));
+        formData.append('id_zone', context.zoneID);
+        formData.append('harga', parseInt(context.selectedItem.price));
 
-        axios.post('http://restapi.novastore.my.id/api/payment-auth', formData, {
+        const params = {
+            game_id: parseInt(detail.id),
+            item_id: parseInt(context.selectedItem.id),
+            id_user: parseInt(context.idUser),
+            id_zone: context.zoneID,
+            harga: parseInt(context.selectedItem.price),
+
+        }
+
+        axios.get('http://restapi.novastore.my.id/api/payment-auth', {
             headers: {
+                Authorization: `Bearer ${token}`,
                 'Content-Type': 'multipart/form-data'
-            }
+            },
+            params
         }).then((response) => {
-            localStorage.setItem('token', response.data.
-            token);
             console.log(response)
-            navigate('/')
         }).catch((error) => {
             console.log(error)
-        });        
+        });
     }
 
     return (
@@ -87,30 +98,30 @@ function DetailGame() {
                         <div className='wrapper-input'>
                             <h1>Masukkan ID anda</h1>
                             <div>
-                                <input 
-                                    onFocus={() => context.setActive1UserId(true)} 
+                                <input
+                                    onFocus={() => context.setActive1UserId(true)}
                                     onChange={(e) => context.setIdUser(e.target.value)}
                                     type='text'
                                 />
-                                <input 
-                                    onFocus={() => context.setActive1ZoneId(true)} 
+                                <input
+                                    onFocus={() => context.setActive1ZoneId(true)}
                                     onChange={(e) => context.setZoneId(e.target.value)}
                                     placeholder='Zone ID'
                                     type='text'
-                                />                                
+                                />
                                 <img src={questionMark} />
                             </div>
                         </div>
                         <div className='wrapper-items'>
                             <h1>Pilih Nominal Top Up</h1>
                             <div className='wrapper-topup-grid'>
-                                {loading ? 
-                                    <TopUpGrid 
-                                        items={items} 
-                                        loading={loading} 
-                                        selectedItem={context.selectedItem} 
-                                        setSelectedItem={context.setSelectedItem}/> 
-                                : 'loading'}
+                                {loading ?
+                                    <TopUpGrid
+                                        items={items}
+                                        loading={loading}
+                                        selectedItem={context.selectedItem}
+                                        setSelectedItem={context.setSelectedItem} />
+                                    : 'loading'}
                             </div>
                         </div>
                         <div className='wrapper-total'>
@@ -122,7 +133,7 @@ function DetailGame() {
                         </div>
                         <div class="btn-login">
                             <input type="submit" value='Beli' />
-                        </div>                    
+                        </div>
                     </form>
                 </div>
             </div>
