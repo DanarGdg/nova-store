@@ -35,17 +35,19 @@ function ApiProfileProvider({ children }) {
         });
     }
 
-    const formData = new FormData();
-    formData.append('name', name);
     const file = new File(["avatar"], avatar, {
         type: "image",
     });
-    formData.append('avatar', avatar);
-    formData.append('no_hp', phoneNumber);
 
+    const formData = new FormData();
+    let appendAvatar = formData.append('avatar', avatar);
+    
     function handleEditProfile(e) {
+        formData.append('name', name);
+        console.log(appendAvatar)
+         // formData.append('avatar', avatar);
+        formData.append('no_hp', phoneNumber);
         e.preventDefault();
-
         axios.post('http://restapi.novastore.my.id/api/profile/edit-profile', formData, {
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -72,7 +74,7 @@ function ApiProfileProvider({ children }) {
         phoneNumber, setPhoneNumber,
         avatar, setAvatar,
         loading, setLoading,
-        handleEditProfile
+        handleEditProfile, formData, appendAvatar
     }
 
     return (

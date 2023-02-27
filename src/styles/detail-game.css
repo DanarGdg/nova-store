@@ -1,14 +1,11 @@
 .detail-game{
     width: 1240px;
     margin: 0 auto;
-    /* display: flex; */
-
 }
 
 .detail-game .line{
     margin: 0 auto;
     transform: translateY(-30px);
-    /* position: absolute; */
 }
 
 .wrapper-detail{
@@ -114,6 +111,12 @@
     font-size: 24px;
     transition: all .3s ;
 }
+
+.wrapper-input div input:nth-child(2){
+    text-align: center;
+    width: 125px;
+}
+
 
 .wrapper-input div input:focus, .wrapper-input div input:hover{
     border: 1px solid #7C7FFF;
