@@ -5,7 +5,7 @@ import '../styles/detail-game.css'
 import specialBorder from '../assets/special-border.svg'
 import googlePlay from '../assets/googleplay.png'
 import appstore from '../assets/appstore.png'
-import { useParams } from 'react-router'
+import { useNavigate, useParams } from 'react-router'
 import axios from 'axios'
 import TimelineTransaction from './TimelineTransaction'
 import Footer from './Footer'
@@ -15,12 +15,14 @@ import TopUpGrid from './TopUpGrid'
 import wallet from '../assets/wallet.svg'
 
 function DetailGame() {
+    const navigate = useNavigate()
     let userId = useParams()
     const [detail, setDetail] = useState([]);
     const [items, setItems] = useState([])
     const [loading, setLoading] = useState(false);
     const context = useContextDetailGame()
     const token = localStorage.getItem("token");
+    console.log(items);
 
     useEffect(() => {
         function getData() {
@@ -43,6 +45,26 @@ function DetailGame() {
         getData();
     }, [userId]);
 
+    function handleCreateTransaction(e){
+        e.preventDefault()
+        const formData = new FormData();
+        formData.append('game_id', context.idUser);
+        formData.append('item_id', items);
+
+        axios.post('http://restapi.novastore.my.id/api/payment-auth', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        }).then((response) => {
+            localStorage.setItem('token', response.data.
+            token);
+            console.log(response)
+            navigate('/')
+        }).catch((error) => {
+            console.log(error)
+        });        
+    }
+
     return (
         <div className='detail-game'>
             <Navbar />
@@ -61,14 +83,21 @@ function DetailGame() {
 
                 <div className='transaction'>
                     <TimelineTransaction />
-                    <div className='wrapper-input-items'>
+                    <form className='wrapper-input-items' onSubmit={handleCreateTransaction}>
                         <div className='wrapper-input'>
                             <h1>Masukkan ID anda</h1>
                             <div>
                                 <input 
-                                    onFocus={() => context.setActive1(true)} 
+                                    onFocus={() => context.setActive1UserId(true)} 
                                     onChange={(e) => context.setIdUser(e.target.value)}
+                                    type='text'
                                 />
+                                <input 
+                                    onFocus={() => context.setActive1ZoneId(true)} 
+                                    onChange={(e) => context.setZoneId(e.target.value)}
+                                    placeholder='Zone ID'
+                                    type='text'
+                                />                                
                                 <img src={questionMark} />
                             </div>
                         </div>
@@ -94,7 +123,7 @@ function DetailGame() {
                         <div class="btn-login">
                             <input type="submit" value='Beli' />
                         </div>                    
-                    </div>
+                    </form>
                 </div>
             </div>
             <Footer />

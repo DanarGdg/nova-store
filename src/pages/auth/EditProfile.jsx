@@ -18,13 +18,10 @@ function EditProfile() {
     const handleFileAvatar = function (e) {
         context.setAvatar(e.target.files[0])
     };
-
+    
     useEffect(() => {
-        const file = new File(["avatar"], context.avatar, {
-            type: "image",
-        });
-        console.log(file);
-        console.log(context.avatar);
+        // console.log(context.formData.append('avatar', context.avatar));
+        // console.log(context.avatar);
     },[context.avatar])
 
     return (
