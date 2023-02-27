@@ -15,7 +15,11 @@ function ApiHomeProvider({ children }) {
 
     async function gameDataApi() {
         setLoading(false)
-        axios.get('http://restapi.novastore.my.id/api/home')
+        axios.get('http://restapi.novastore.my.id/api/home', {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },         
+        })
             .then((response) => {
                 setGameData(response.data.data)
                 setLoading(true)
