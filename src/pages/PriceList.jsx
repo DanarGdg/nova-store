@@ -1,24 +1,33 @@
 import React, { useState } from 'react'
+import { useEffect } from 'react';
 import Dropdown from '../components/DropDown'
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar'
 import PriceContainer from '../components/PriceContainer';
 import RangeSlider from '../components/RangeSlider';
+import { useApiPrice } from '../context/api/PriceApi';
 import '../styles/price-list.css'
 
 function PriceList() {
-  const options = [
-    { value: "green", label: "Green" },
-    { value: "blue", label: "Blue" },
-    { value: "red", label: "Red" },
-    { value: "yellow", label: "Yellow" },
-    { value: "orange", label: "Orange" },
-    { value: "pink", label: "Pink" },
-    { value: "purple", label: "Purple" },
-    { value: "grey", label: "Grey" }
-  ];
+  const context = useApiPrice()
+  const [selectedGame, setSelectedGame] = useState("");
+  let options = []
+  context.listGame?.map((game) => {
+    options.push(
+      { value: game.id, label: game.nama },
+    )
+  })
 
-  const [SelectedGame, setSelectedGame] = useState("");
+  function handleChange(e){
+    setSelectedGame(e.label)
+    context.setGameId(e.value)
+  }
+  
+  useEffect(() => {
+    context.getListPrice().then((res) => {
+      context.setListPrice(res.data.data)
+    })
+  }, [selectedGame])
 
   return (
     <div className='price-list'>
@@ -26,11 +35,13 @@ function PriceList() {
       <Dropdown
         placeHolder="Select..."
         options={options}
-        selectedGame={SelectedGame}
+        onChange={handleChange}
       />
-      <h2>Mobile Legend</h2>
+      <h2>{selectedGame}</h2>
       <RangeSlider />
-      <PriceContainer />
+      <div className='wrapper-price-container'>
+        {selectedGame ? <PriceContainer /> : 'Pilih game'}
+      </div>
       <Footer />
     </div>
   )
