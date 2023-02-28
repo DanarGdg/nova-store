@@ -15,6 +15,7 @@ import Login from './pages/auth/Login';
 import { ApiOrderListProvider } from './context/api/OrderListApi';
 import EditProfile from './pages/auth/EditProfile';
 import { ApiProfileProvider } from './context/api/ProfileApi';
+import { ApiPriceProvider } from './context/api/PriceApi';
 
 function App() {
   return (
@@ -41,7 +42,13 @@ function App() {
             </ApiOrderListProvider>
           } 
         />
-        <Route path='/price-list' element={<PriceList />} />
+        <Route path='/price-list' 
+          element={
+            <ApiPriceProvider>
+              <PriceList />
+            </ApiPriceProvider>
+          } 
+        />
         <Route path='/login-register' element={<LoginRegister />} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
