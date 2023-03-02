@@ -24,6 +24,9 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
+    <script type="text/javascript"
+    src="https://app.midtrans.com/snap/snap.js"
+    data-client-key="SB-Mid-client-DafhZZgwaUKeiMzG"></script>
     <title>React App</title>
   </head>
   <body>
@@ -39,5 +42,12 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <button id="pay-button">Pay!</button>
+    <script type="text/javascript">
+      var payButton = document.getElementById('pay-button');
+      payButton.addEventListener('click', function () {
+        snap.pay('f172a55f-5d68-402b-b665-a6f3952d8834');
+      });
+    </script>
   </body>
 </html>

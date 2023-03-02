@@ -37,7 +37,6 @@ function RangeSlider() {
     console.log(value);
     var x = value;
     setColor("linear-gradient(90deg, #FFC700 " + x + "%" + ", hsl(0, 0%, 100%) " + x + "%)")
-    // setSelectedItem
   },[value])
 
   return (

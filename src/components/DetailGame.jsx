@@ -13,6 +13,7 @@ import questionMark from '../assets/question-mark.svg'
 import { useContextDetailGame } from '../context/app/ContextDetailGame'
 import TopUpGrid from './TopUpGrid'
 import wallet from '../assets/wallet.svg'
+import snap from 'https://app.sandbox.midtrans.com/snap/snap.js'
 
 function DetailGame() {
     const navigate = useNavigate()
@@ -63,7 +64,7 @@ function DetailGame() {
 
         }
 
-        axios.get('http://restapi.novastore.my.id/api/payment-auth', {
+        axios.get('http://restapi.novastore.my.id/api/payment', {
             headers: {
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'multipart/form-data'
@@ -137,6 +138,7 @@ function DetailGame() {
                     </form>
                 </div>
             </div>
+            <button onClick={() => snap.pay("f172a55f-5d68-402b-b665-a6f3952d8834")}>ini button pay snap</button>
             <Footer />
         </div>
     )
