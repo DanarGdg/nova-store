@@ -5,6 +5,16 @@ import { useApiOrderList } from '../context/api/OrderListApi';
 function TableOrderList() {
     const context = useApiOrderList()
 
+    function checkStatus(status){
+        if(status === 'Pending'){
+            return 'status_pending'
+        }else if(status === 'Done'){
+            return 'status_success'
+        }else{
+            return 'status_failed'
+        }
+    }
+
     return (
         <table className='table-order-list'>
             <tbody>
@@ -28,7 +38,7 @@ function TableOrderList() {
                         <td>{item.item?.item}</td>
                         <td>Rp {item?.harga}</td>
                         <td>{item?.created_at}</td>
-                        <td><div className={`status ${item?.status === 'Pending' ? 'status_pending' : ''}`}>{item?.status}</div></td>
+                        <td><div className={`status ${checkStatus(item?.status)}`}>{item?.status}</div></td>
                     </tr>
                 ))
                 }
