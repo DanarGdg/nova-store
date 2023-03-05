@@ -9,10 +9,11 @@ import GridGames from '../components/GridGames';
 import Footer from '../components/Footer';
 import axios from 'axios';
 import { useApiHome } from '../context/api/homeApi';
+import Loading from '../components/Loading';
+import Loading3Dots from '../components/Loading3Dots';
 
 function Home() {
   const context = useApiHome()
-  // console.log(context)
 
   return (
     <div className='home'>
@@ -32,7 +33,7 @@ function Home() {
         />
         <h1>TOP UP GAME</h1>
       </div>
-      {context.loading ? <GridGames data={context.gameData} /> : <h1>Loading</h1>}
+      {!context.loading ? <GridGames data={context.gameData} /> : <Loading3Dots/>}
       <Footer />
     </div>
   )

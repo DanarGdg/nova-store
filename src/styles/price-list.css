@@ -119,5 +119,5 @@
     margin: 3rem 0;
     gap: 2rem;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    place-items: center;
 }

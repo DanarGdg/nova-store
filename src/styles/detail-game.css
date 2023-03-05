@@ -167,9 +167,14 @@
     fill: #7C7FFF;
 }
 
-.wrapper-items .item svg, .wrapper-items .item path{
+.wrapper-items .item svg path{
     fill: white;
     transition: ease-out 0.3s;
+}
+
+.wrapper-items .item.selected svg path, .wrapper-items .item.selected p{
+    fill: #7C7FFF;
+    color: #7C7FFF;
 }
 
 .wrapper-items .item p{

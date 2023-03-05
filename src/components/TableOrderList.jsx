@@ -1,6 +1,7 @@
-import axios from 'axios';
 import React from 'react'
 import { useApiOrderList } from '../context/api/OrderListApi';
+import Loading from './Loading';
+import dayjs from 'dayjs'
 
 function TableOrderList() {
     const context = useApiOrderList()
@@ -29,7 +30,7 @@ function TableOrderList() {
 
                 {!context.loading ?
 
-                'loadingg' 
+                <Loading/>
                 : context.orderList.length === 0 ? 'data tidak ditemukan'
                 : context.orderList.map((item, index) => (
                     <tr key={index}>
@@ -37,7 +38,7 @@ function TableOrderList() {
                         <td>{item.game?.nama}</td>
                         <td>{item.item?.item}</td>
                         <td>Rp {item?.harga}</td>
-                        <td>{item?.created_at}</td>
+                        <td>{dayjs(item?.created_at).format('DD-MM-YYYY')} {item?.waktu}</td>
                         <td><div className={`status ${checkStatus(item?.status)}`}>{item?.status}</div></td>
                     </tr>
                 ))

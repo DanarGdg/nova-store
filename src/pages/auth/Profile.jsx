@@ -8,6 +8,7 @@ import { useNavigate } from "react-router"
 import axios from "axios"
 import { Link } from "react-router-dom"
 import { useProfileApi } from "../../context/api/ProfileApi"
+import Loading from "../../components/Loading"
 
 function Profile() {
     const navigate = useNavigate()
@@ -15,13 +16,14 @@ function Profile() {
     const context = useProfileApi()
     
     function logout() {
+        context.setLoading(false)
         axios.get('http://restapi.novastore.my.id/api/logout', {
             headers: {
                 Authorization: `Bearer ${token}`,
             },     
         }).then((response) => {
             localStorage.removeItem("token");
-            console.log(response)
+            context.setLoading(true)
             navigate('/login')
         }).catch((error) => {
             console.log(error)
@@ -42,8 +44,8 @@ function Profile() {
                 <div className="btn" onClick={logout}>LOGOUT</div>
             </div>
             <div className="box">
-                <h2 className='pop-up-text'>{context.profileData.user?.name}</h2>
-                <img className="img-user" src={context.profileData.user?.pf_avatar} alt="" />
+                {context.loading ? <h2 className='pop-up-text'>{context.profileData.user?.name}</h2> : <Loading/>}
+                <img className="img-user threed-effect" src={context.profileData.user?.pf_avatar} alt="" />
             </div>
             <div className="history-header">
                 <h1 className="history-tittle">

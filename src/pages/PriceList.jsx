@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useEffect } from 'react';
 import Dropdown from '../components/DropDown'
 import Footer from '../components/Footer';
+import Loading from '../components/Loading';
 import Navbar from '../components/Navbar'
 import PriceContainer from '../components/PriceContainer';
 import RangeSlider from '../components/RangeSlider';
@@ -26,6 +27,9 @@ function PriceList() {
   useEffect(() => {
     context.getListPrice().then((res) => {
       context.setListPrice(res.data.data)
+      context.setLoading(true)
+      context.setValue(0)
+      context.setStep(0)
     })
   }, [selectedGame])
 
@@ -38,9 +42,9 @@ function PriceList() {
         onChange={handleChange}
       />
       <h2>{selectedGame}</h2>
-      <RangeSlider />
+      <RangeSlider selectedGame={selectedGame}/>
       <div className='wrapper-price-container'>
-        {selectedGame ? <PriceContainer /> : 'Pilih game'}
+        {selectedGame === '' ? 'Pilih game' : !context.loading ? <Loading/> : <PriceContainer />}
       </div>
       <Footer />
     </div>

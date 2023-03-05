@@ -11,6 +11,9 @@ function ApiPriceProvider({ children }) {
     const [listGame, setListGame] = useState([])
     const [listPrice, setListPrice] = useState([])
     const [idGame, setGameId] = useState('')
+    const [value, setValue] = useState(0)
+    const [step, setStep] = useState(0)
+    const [selectedItem, setSelectedItem] = useState([])
     const [loading, setLoading] = useState(false);
     const token = localStorage.getItem('token');
 
@@ -38,10 +41,6 @@ function ApiPriceProvider({ children }) {
             },    
             params: request     
         })
-        // .then((response) => {
-        //     setListPrice(response.data.data)
-        //     setLoading(true)
-        // });
     }
 
     useEffect(() => {
@@ -53,6 +52,9 @@ function ApiPriceProvider({ children }) {
         loading, setLoading,
         idGame, setGameId,
         listPrice, setListPrice,
+        value, setValue,
+        step, setStep,
+        selectedItem, setSelectedItem,
         getListPrice
     }
 

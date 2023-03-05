@@ -20,6 +20,7 @@ function ApiProfileProvider({ children }) {
     const navigate = useNavigate()
 
     function getProfile() {
+        setLoading(false)
         axios.get('http://restapi.novastore.my.id/api/profile', {
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -30,6 +31,7 @@ function ApiProfileProvider({ children }) {
             setEmail(response.data.data.user.email)
             setPhoneNumber(response.data.data.user.no_hp)
             setAvatar(response.data.data.user.pf_avatar)
+            setLoading(true)
         }).catch((error) => {
             console.log(error)
         });
