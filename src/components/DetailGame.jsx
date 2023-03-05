@@ -13,6 +13,7 @@ import questionMark from '../assets/question-mark.svg'
 import { useContextDetailGame } from '../context/app/ContextDetailGame'
 import TopUpGrid from './TopUpGrid'
 import wallet from '../assets/wallet.svg'
+import Loading from './Loading'
 
 function DetailGame() {
     const navigate = useNavigate()
@@ -20,14 +21,49 @@ function DetailGame() {
     const [detail, setDetail] = useState([]);
     const [items, setItems] = useState([])
     const [loading, setLoading] = useState(false);
+    const [showModal, setShowModal] = useState(false)
+    const [showModalPay, setShowModalPay] = useState(false)
+    const [snapToken, setSnapToken] = useState('')
+    
     const context = useContextDetailGame()
     const token = localStorage.getItem("token");
-    console.log(typeof detail.id);
+
+    useEffect(() => {
+        const scriptSnap = document.createElement('script');
+
+        scriptSnap.type = 'text/javascript';
+        scriptSnap.src = "https://app.sandbox.midtrans.com/snap/snap.js";
+        scriptSnap.setAttribute('data-client-key', 'SB-Mid-client-DafhZZgwaUKeiMzG')
+
+        document.body.appendChild(scriptSnap);
+      
+        return () => {
+          document.body.removeChild(scriptSnap);
+        }
+    },[])
+
+    useEffect(() => {
+        const scriptFunctionSnap = document.createElement('script');
+
+        scriptFunctionSnap.type = 'text/javascript';
+        scriptFunctionSnap.innerHTML = `
+            var payButton = document.getElementById('pay-button');
+            payButton.addEventListener('click', function () {
+              snap.pay('${snapToken}');
+            });    
+        `
+        console.log(snapToken);
+        document.body.appendChild(scriptFunctionSnap);
+      
+        return () => {
+          document.body.removeChild(scriptFunctionSnap);
+        }
+    },[snapToken])
 
     useEffect(() => {
         function getData() {
             const url = "http://restapi.novastore.my.id/api/home/show/" + userId.id
-            setLoading(false);
+            setLoading(false)
             axios.get(url,
                 {
                     headers: {
@@ -47,6 +83,8 @@ function DetailGame() {
 
     function handleCreateTransaction(e) {
         e.preventDefault()
+        setLoading(false)
+        setShowModal(false)
         const formData = new FormData();
         formData.append('game_id', parseInt(detail.id));
         formData.append('item_id', parseInt(context.selectedItem.id));
@@ -60,10 +98,11 @@ function DetailGame() {
             id_user: parseInt(context.idUser),
             id_zone: context.zoneID,
             harga: parseInt(context.selectedItem.price),
-
         }
 
-        axios.get('http://restapi.novastore.my.id/api/payment-auth', {
+        let url = token ? 'http://restapi.novastore.my.id/api/payment-auth' : 'http://restapi.novastore.my.id/api/payment'
+
+        axios.get(url, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'multipart/form-data'
@@ -71,9 +110,20 @@ function DetailGame() {
             params
         }).then((response) => {
             console.log(response)
+            setSnapToken(response.data.snap_token)
+            setShowModalPay(true)
+            setLoading(true)
         }).catch((error) => {
             console.log(error)
         });
+    }
+
+    function checkTimeLine(){
+        if(context.activeUserId && context.idUser && context.activeZoneId && context.zoneID && context.active2){
+            return true
+        }else{
+            return false
+        }
     }
 
     return (
@@ -94,7 +144,7 @@ function DetailGame() {
 
                 <div className='transaction'>
                     <TimelineTransaction />
-                    <form className='wrapper-input-items' onSubmit={handleCreateTransaction}>
+                    <div className='wrapper-input-items'>
                         <div className='wrapper-input'>
                             <h1>Masukkan ID anda</h1>
                             <div>
@@ -131,12 +181,66 @@ function DetailGame() {
                             </div>
                             <p>Rp. {context.selectedItem.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}</p>
                         </div>
-                        <div class="btn-login">
-                            <input type="submit" value='Beli' />
+                        <button disabled={checkTimeLine() ? false : true} className="btn-login" onClick={() => setShowModal(true)}>
+                            Beli
+                        </button>
+                        {showModal && checkTimeLine() && 
+                        <div className='wrapper-modal-detail-payment'>
+                            <div className='modal-detail-payment'>
+                                <h1>Detail Pesanan</h1>
+                                <p>Mohon konfirmasi Username anda sudah benar</p>
+                                <ul>
+                                    <li>ID: <span>{context?.idUser}</span></li>
+                                    <li>Zone ID: <span>{context?.zoneID}</span></li>
+                                    <li>Harga: <span>Rp. {context.selectedItem.price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}</span></li>
+                                    <li>Item: <span>{context?.selectedItem.item}</span></li>
+                                </ul>
+                                <p className='total-pembayaran'>Total Pembayaran :</p>
+                                <h1 className='harga'>Rp. {context.selectedItem.price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}</h1>
+                                <div>
+                                    <button className="btn-login" onClick={() => setShowModal(false)}>Batalkan</button>
+                                    <button className="btn-login" onClick={handleCreateTransaction}>Konfirmasi</button>
+                                </div>
+                            </div>
                         </div>
-                    </form>
+                        }
+                        {showModalPay && checkTimeLine() && 
+                        <div className='wrapper-modal-detail-payment'>
+                            <div className='modal-detail-payment'>
+                            <h1>Baca sebelum melanjutkan</h1>
+                                <p>Dengan anda melanjutkan pembayaran dipastikan bahwa:</p>   
+                                <ul>
+                                    <li className="final-payment">
+                                    UID dan Zone anda sudah sesuai 
+                                    </li>
+                                    <li className="final-payment">
+                                    Jumlah barang yang anda pesan sudah sesuai
+                                    </li>
+                                    <li className="final-payment">
+                                    Total yang akan anda bayar sudah sesuai
+                                    </li>
+                                    <li className="final-payment">
+                                    Anda tidak dapat meminta refund setelah barang sudah diterima 
+                                    </li>
+                                    <li className="final-payment">
+                                    Anda bisa mengajukan complaint ketika barang yang diterima tidak sesuai
+                                    </li>
+                                    <li className="final-payment">
+                                    Anda bisa complaint ke CS jika ada kesalahan teknis seperti error atau bug
+                                    </li>
+                                </ul>
+                                <div>
+                                    <button className="btn-login" onClick={() => setShowModal(false)}>Batalkan</button>
+                                    <button className="btn-login"  id="pay-button">Setuju</button>
+                                </div>
+                            </div>
+                        </div>
+                        }
+                        {!loading && <Loading/>}
+                    </div>
                 </div>
             </div>
+
             <Footer />
         </div>
     )
