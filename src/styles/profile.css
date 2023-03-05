@@ -28,6 +28,7 @@
     height: 40px;
     background-color: white;
     clip-path: polygon(12px 0px, 100% 0px, 100% 72%, calc(100% - 12px) 100%, 0px 100%, 0px 12px);
+    cursor: pointer;
 }
 
 .img-user {
