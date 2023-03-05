@@ -30,27 +30,33 @@ function DetailGame() {
 
     useEffect(() => {
         const scriptSnap = document.createElement('script');
-        const scriptFunctionSnap = document.createElement('script');
-        scriptFunctionSnap.async = true;
 
         scriptSnap.type = 'text/javascript';
-        scriptFunctionSnap.type = 'text/javascript';
-        scriptSnap.src = "https://app.midtrans.com/snap/snap.js";
+        scriptSnap.src = "https://app.sandbox.midtrans.com/snap/snap.js";
         scriptSnap.setAttribute('data-client-key', 'SB-Mid-client-DafhZZgwaUKeiMzG')
 
+        document.body.appendChild(scriptSnap);
+      
+        return () => {
+          document.body.removeChild(scriptSnap);
+        }
+    },[])
+
+    useEffect(() => {
+        const scriptFunctionSnap = document.createElement('script');
+
+        scriptFunctionSnap.type = 'text/javascript';
         scriptFunctionSnap.innerHTML = `
             var payButton = document.getElementById('pay-button');
             payButton.addEventListener('click', function () {
-              snap.pay(${snapToken}});
+              snap.pay('${snapToken}');
             });    
         `
         console.log(snapToken);
-        document.head.appendChild(scriptSnap);
         document.body.appendChild(scriptFunctionSnap);
       
         return () => {
-          document.head.removeChild(scriptSnap);
-          document.body.appendChild(scriptFunctionSnap);
+          document.body.removeChild(scriptFunctionSnap);
         }
     },[snapToken])
 
@@ -94,7 +100,9 @@ function DetailGame() {
             harga: parseInt(context.selectedItem.price),
         }
 
-        axios.get('http://restapi.novastore.my.id/api/payment', {
+        let url = token ? 'http://restapi.novastore.my.id/api/payment-auth' : 'http://restapi.novastore.my.id/api/payment'
+
+        axios.get(url, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'multipart/form-data'
@@ -199,15 +207,40 @@ function DetailGame() {
                         {showModalPay && checkTimeLine() && 
                         <div className='wrapper-modal-detail-payment'>
                             <div className='modal-detail-payment'>
-                                <button id="pay-button">Pay!</button>
+                            <h1>Baca sebelum melanjutkan</h1>
+                                <p>Dengan anda melanjutkan pembayaran dipastikan bahwa:</p>   
+                                <ul>
+                                    <li className="final-payment">
+                                    UID dan Zone anda sudah sesuai 
+                                    </li>
+                                    <li className="final-payment">
+                                    Jumlah barang yang anda pesan sudah sesuai
+                                    </li>
+                                    <li className="final-payment">
+                                    Total yang akan anda bayar sudah sesuai
+                                    </li>
+                                    <li className="final-payment">
+                                    Anda tidak dapat meminta refund setelah barang sudah diterima 
+                                    </li>
+                                    <li className="final-payment">
+                                    Anda bisa mengajukan complaint ketika barang yang diterima tidak sesuai
+                                    </li>
+                                    <li className="final-payment">
+                                    Anda bisa complaint ke CS jika ada kesalahan teknis seperti error atau bug
+                                    </li>
+                                </ul>
+                                <div>
+                                    <button className="btn-login" onClick={() => setShowModal(false)}>Batalkan</button>
+                                    <button className="btn-login"  id="pay-button">Setuju</button>
+                                </div>
                             </div>
                         </div>
                         }
                         {!loading && <Loading/>}
-                        {/* <button id="pay-button">Pay!</button> */}
                     </div>
                 </div>
             </div>
+
             <Footer />
         </div>
     )
