@@ -1,4 +1,4 @@
-A school project to practice implementing a payment gateway system.Integrated the Midtrans API in sandbox mode to simulate real payment workflows.
+A school project to practice implementing a payment gateway system.Integrated the Midtrans API in sandbox mode to simulate real payment workflows. This is frontend repo. Backend was originally built in Laravel but code was lost.
 
 
 # Getting Started with Create React App
