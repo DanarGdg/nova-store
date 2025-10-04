@@ -1,3 +1,6 @@
+A school project to practice implementing a payment gateway system.Integrated the Midtrans API in sandbox mode to simulate real payment workflows.
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
